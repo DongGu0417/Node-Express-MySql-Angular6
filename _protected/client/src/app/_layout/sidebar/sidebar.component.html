@@ -1,0 +1,21 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <div class="list-group">
+    <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
+    </a>    
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('user')">
+        <span><i class="fa fa-plus"></i>&nbsp; {{ 'Users' | translate }}</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'user'">
+        <ul class="submenu">           
+          <li>
+            <a routerLink="/users" [routerLinkActive]="['router-link-active']" class="list-group-item">
+              <i class="fa fa-file-o"></i><span>{{ 'List' | translate }}</span>
+            </a>
+          </li>          
+        </ul>
+      </li>
+    </div>
+  </div>
+</nav>

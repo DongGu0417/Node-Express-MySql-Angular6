@@ -1,0 +1,16 @@
+<!--{{treeData | json}}-->
+<table *ngIf="treeData.length" class="table table-bordered">
+  <!--<li *ngFor="node of treeData" >-->
+  <tr *ngFor="let item of treeData">
+    <td>{{item.loanName}}
+
+    <!--{{item.children | json}}-->
+    <!--{{item.children?.length}}-->
+
+    <app-tree-view *ngIf="item.children?.length" [treeData]="item.children"></app-tree-view>
+    </td>
+  </tr>
+  <!--<span>{{node.loanName}}</span>-->
+  <!--<tree-view [treeData]="node.children" (myParentObserverMethod)="childObserverMethod($event)"></tree-view>-->
+
+</table>
