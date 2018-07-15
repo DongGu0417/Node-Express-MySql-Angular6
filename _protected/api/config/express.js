@@ -71,6 +71,10 @@ app.use(`/api/${APP_CONFIG.API_VERSION}/`, ApiRoutes_v1);
 // To serve build files
 
 app.use(express.static('public')) // to server html files for web
+app.all('*', function(req, res, next) { // To serve angular build files on page reload
+    res.sendFile( path.resolve('public/index.html') );
+   
+});
  
 app.use('/assets', express.static(path.join(__dirname, 'api/v1/assets/'))); // assets folder 
  

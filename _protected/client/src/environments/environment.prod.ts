@@ -2,5 +2,5 @@
 import env from './.env';
 export const environment = {
   production: true,
-  API_URL: 'http://127.0.0.1/api/v1',
+  API_URL: 'http://127.0.0.1:4040/api/v1',
 };
