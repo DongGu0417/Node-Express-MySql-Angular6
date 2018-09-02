@@ -1,35 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { RouterModule } from '@angular/router';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Configuration values
 import { APP_CONFIG, APP_DI_CONFIG } from './config/app.config';
 // Root App component
 import { AppComponent } from './app.component';
-// App Routing
-import { AppRoutingModule } from './app.routing.module';
 // Core Modules
 import { CoreModule } from './core';
 // layout components
 import { HeaderComponent, FooterComponent, SidebarComponent, AppLayoutComponent, BareLayoutComponent, BareHeaderComponent } from './_layout';
 // Authentication guards & services
 import { AuthGuard, HttpTokenInterceptor, AuthenticationService, NotificationService, ApiService, ErrorsModule } from './core'
-// Shared Components & declarations
-import { ConfirmModalComponent, DIRECTIVE_DECLARATIONS } from './shared';
-
-// Login Component
-import { LoginComponent } from './login/login.component';
 
 // Third party modules & components
 import { CollapseModule, BsDropdownModule, ModalModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap';
-import { LoadingModule } from 'ngx-loading';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 // AoT requires an exported function for factories
@@ -49,21 +39,19 @@ export const DEFAULT_DECLARATION = [
     BareHeaderComponent,
     FooterComponent,
     SidebarComponent,
-    LoginComponent,
     BareLayoutComponent,
-    AppLayoutComponent,
-    ConfirmModalComponent, DIRECTIVE_DECLARATIONS
-
+    AppLayoutComponent
 ];
 
-export const DEFAULT_MODULES = [CommonModule,
+export const DEFAULT_MODULES = [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    FormsModule,
+    // FormsModule,
     CoreModule,
     ErrorsModule,
-    ReactiveFormsModule,
+    // ReactiveFormsModule,
 
     // BrowserAnimationsModule no longer required
     ToastNoAnimationModule,
@@ -83,31 +71,14 @@ export const DEFAULT_MODULES = [CommonModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    LoadingModule];
+    BsDatepickerModule.forRoot()
+];
 
-export const DEFAULT_PROVIDERS = [AuthenticationService,
+export const DEFAULT_PROVIDERS = [
+    AuthenticationService,
     ApiService,
     NotificationService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
-    { provide: APP_CONFIG, useValue: APP_DI_CONFIG }]
-
-@NgModule({
-
-    entryComponents: [ConfirmModalComponent],
-    imports: [
-
-        AppRoutingModule
-    ],
-    providers: [
-        AuthenticationService,
-        ApiService,
-        NotificationService,
-        AuthGuard,
-        { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
-        { provide: APP_CONFIG, useValue: APP_DI_CONFIG }],
-
-    bootstrap: [AppComponent]
-})
-export class AppModule { }
+    { provide: APP_CONFIG, useValue: APP_DI_CONFIG }
+] 

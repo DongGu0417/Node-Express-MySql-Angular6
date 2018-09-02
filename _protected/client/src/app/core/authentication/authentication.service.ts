@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models';
+import { AuthenticationModel } from './authentication.model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment'
@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment'
 
 export interface Credentials {
   // Customize received credentials here
-  user: User;
+  user: AuthenticationModel;
   token: string;
 }
 
@@ -69,15 +69,15 @@ export class AuthenticationService {
   }
 
   public getToken(): string | null {
-    return (this._credentials)?this._credentials.token: null;
+    return (this._credentials) ? this._credentials.token : null;
   }
 
   public isAuthenticated(): boolean {
     return !!this._credentials;
   }
 
-  public getloggedInUser(){
-    return (this._credentials)?this._credentials.user: null;
+  public getloggedInUser() {
+    return (this._credentials) ? this._credentials.user : null;
   }
 
 }

@@ -1,3 +1,3 @@
-export interface Errors {
+export interface ErrorsModel {
   errors: {[key: string]: string};
 }

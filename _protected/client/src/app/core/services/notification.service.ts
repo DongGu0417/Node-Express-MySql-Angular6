@@ -16,34 +16,26 @@ export class NotificationService {
   private notificationConfig: {}
   constructor(
     public toastr: ToastrService
-  ) { 
+  ) {
     this.notificationConfig = {
-      enableHtml:true,
-      // closeButton:true 
+      enableHtml: true,
+      closeButton:true 
     }
   }
 
   notifySuccess(m) {
-    setTimeout(() => this.toastr.success(m,'Success',this.notificationConfig));
+    setTimeout(() => this.toastr.success(m, 'Success', this.notificationConfig));
   }
 
   notifyError(m) {
-    setTimeout(() => this.toastr.error(m,'Error',this.notificationConfig));
+    setTimeout(() => this.toastr.error(m, 'Error', this.notificationConfig));
   }
 
   notifyWarning(m) {
-    setTimeout(() => this.toastr.warning(m,'warning',this.notificationConfig));
+    setTimeout(() => this.toastr.warning(m, 'warning', this.notificationConfig));
   }
 
   notifyInfo(m) {
-    setTimeout(() => this.toastr.info(m,'Info',this.notificationConfig));
+    setTimeout(() => this.toastr.info(m, 'Info', this.notificationConfig));
   }
-
-
-
-  // notify(m) {
-  //   this._notification.next(m);
-  //   setTimeout(() => this._notification, 3000)
-
-  // }
 }

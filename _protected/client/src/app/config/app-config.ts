@@ -1,6 +1,5 @@
 export interface AppConfig {
-  apiEndpoint: string;
-  LoanTypesOptions:any;
-  LoanTypesConstant:any;
-  LoanTypesConstantMap:any
+  apiEndpoint: string; 
+  userStatusConstant:any;
+  userStatusOptions:any;
 }

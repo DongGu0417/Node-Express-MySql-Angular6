@@ -10,11 +10,15 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 // #docregion config
 export const APP_DI_CONFIG: AppConfig = {
   apiEndpoint: environment.API_URL,
-  LoanTypesOptions: [
-                    { id: 1, name: 'Loan' },
-                    { id: 2, name: 'Deposit' },
-                    ],
-  LoanTypesConstant: { LOAN: 1, DEPOSIT: 2 },
-  LoanTypesConstantMap: { 1: 'Loan', 2: 'Deposit' }
+  userStatusConstant: {
+    DELETED: -1,
+    INACTIVE: 0,
+    ACTIVE: 1
+  },
+  userStatusOptions: [
+    { id: -1, name: 'Deleted' },
+    { id: 0, name: 'In Active' },
+    { id: 1, name: 'Active' }
+  ]
 
 };

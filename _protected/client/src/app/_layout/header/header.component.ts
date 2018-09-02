@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from './../../core';
+import { UserModel} from './../../shared/models';
 import { AuthenticationService } from '../../core/authentication/authentication.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { AuthenticationService } from '../../core/authentication/authentication.
 })
 export class HeaderComponent implements OnInit {
   pushRightClass: string = 'push-right';
-  currentUser: User;
+  collapseClass:string = 'collapsed';
+  currentUser: UserModel;
   isCollapsed = false;
 
   constructor( private translate: TranslateService, public router: Router,private authService:AuthenticationService) {
@@ -38,13 +39,15 @@ export class HeaderComponent implements OnInit {
   }
 
   isToggled(): boolean {
-    const dom: Element = document.querySelector('body');
-    return dom.classList.contains(this.pushRightClass);
+    const dom: Element = document.querySelector('aside');
+    return (dom)?dom.classList.contains(this.collapseClass):false;
   }
 
   toggleSidebar() {
-    const dom: any = document.querySelector('body');
-    dom.classList.toggle(this.pushRightClass);
+    const dom: any = document.querySelector('aside');
+    (dom)?dom.classList.toggle(this.collapseClass):'';
+    const cdom: any = document.querySelector('#main-container');
+    (cdom)?cdom.classList.toggle(this.collapseClass):'';
   }
 
   rltAndLtr() {

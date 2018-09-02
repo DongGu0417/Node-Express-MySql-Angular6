@@ -11,6 +11,7 @@ export class SidebarComponent {
     isActive: boolean = false;
     showMenu: string = '';
     pushRightClass: string = 'push-right';
+    collapseClass:string = 'collapsed';
 
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
@@ -43,13 +44,15 @@ export class SidebarComponent {
     }
 
     isToggled(): boolean {
-        const dom: Element = document.querySelector('body');
-        return dom.classList.contains(this.pushRightClass);
+        const dom: Element = document.querySelector('aside');
+        return (dom)?dom.classList.contains(this.collapseClass):false;
     }
 
     toggleSidebar() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle(this.pushRightClass);
+        const dom: any = document.querySelector('aside');
+        (dom)?dom.classList.toggle(this.collapseClass):'';
+        const cdom: any = document.querySelector('#main-container');
+        (cdom)?cdom.classList.toggle(this.collapseClass):'';
     }
 
     rltAndLtr() {

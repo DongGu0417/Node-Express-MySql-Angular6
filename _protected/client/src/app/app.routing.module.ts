@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { BareLayoutComponent } from './_layout/bare-layout/bare-layout.component';
-import { AppLayoutComponent } from './_layout/app-layout/app-layout.component'
-import { LoginComponent } from './login/login.component';
+import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { ErrorsComponent } from './core/errors';
 
 const routes: Routes = [
 
 
-  //Site routes goes here
+  //Auth routes goes here
   {
     path: 'auth',
     component: BareLayoutComponent,
     children: [
-      { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent, pathMatch: 'full' },
-
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
+      { path: 'login', loadChildren: './login/login.module#LoginModule' },
     ]
   },
 
@@ -26,7 +23,7 @@ const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
-      { path: '', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },      
       { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
 
     ]
